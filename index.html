@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Cost of Inaction — Climate Change &amp; the Rising Bill for Local Disasters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="intro">
+    <div class="intro-inner">
+      <p class="kicker">A data story for municipal policymakers</p>
+      <h1>The Cost of Inaction</h1>
+      <p class="subtitle">
+        As the planet warms, the economic damage from local climate disasters is not
+        rising gently &mdash; it is accelerating. Scroll to follow the link between
+        global temperature and the bill your region is being handed.
+      </p>
+      <p class="scroll-hint">Scroll to begin &darr;</p>
+    </div>
+  </header>
+
+  <!-- ================= SCROLLYTELLING ================= -->
+  <main id="scrolly">
+
+    <!-- Left: the 6 narrative steps -->
+    <article class="story">
+
+      <div class="step" data-step="1">
+        <h2>1 &middot; The Baseline</h2>
+        <p>
+          For the first half of the 20th century, the global temperature anomaly sat
+          comfortably <strong>below the long-term average</strong>. This is our baseline:
+          a relatively stable climate, and a world that recorded comparatively few
+          billion-dollar weather disasters.
+        </p>
+        <p class="note">Temperature anomaly, earliest reliable records through 1950.</p>
+      </div>
+
+      <div class="step" data-step="2">
+        <h2>2 &middot; The Shift</h2>
+        <p>
+          From the 1950s onward the line begins its <strong>relentless climb</strong>.
+          Each decade is warmer than the last. The curve that once hugged the baseline
+          now bends sharply upward &mdash; the unmistakable signature of a warming planet.
+        </p>
+        <p class="note">Watch the anomaly cross from negative to positive.</p>
+      </div>
+
+      <div class="step" data-step="3">
+        <h2>3 &middot; Emergence of Extremes</h2>
+        <p>
+          Warming is not abstract &mdash; it lands somewhere. Here is the world map of
+          recorded climate disasters <strong>up to 1990</strong>. Each bubble is sized by
+          the economic damage it caused and coloured by type: floods, storms, droughts,
+          wildfires and more.
+        </p>
+        <p class="note">Bubble area = inflation-adjusted damage. Colour = disaster type.</p>
+      </div>
+
+      <div class="step" data-step="4">
+        <h2>4 &middot; The Modern Crisis</h2>
+        <p>
+          Now extend the map through <strong>2026</strong>. The bubbles swell and
+          multiply across every inhabited continent. The same warming line from the
+          opening scenes is now written across the globe as escalating, costly damage.
+        </p>
+        <p class="note">The map now spans the full record, 1900&ndash;2026.</p>
+      </div>
+
+      <div class="step" data-step="5">
+        <h2>5 &middot; The Economic Toll</h2>
+        <p>
+          Aggregated by decade, the financial story is stark. Total damages do not grow
+          in a straight line &mdash; they grow <strong>exponentially</strong>, stacked
+          ever higher by storms and floods. This is the cost being passed to taxpayers
+          and municipal budgets.
+        </p>
+        <p class="note">Stacked by disaster type. Hover any segment for exact figures.</p>
+      </div>
+
+      <div class="step" data-step="6">
+        <h2>6 &middot; Explore the Data</h2>
+        <p>
+          The trend is set &mdash; now the evidence is yours to interrogate.
+          <strong>Drag to select a time range</strong> on the temperature chart: the map
+          and the damage breakdown update instantly to that period. Hover any bubble or
+          bar for precise numbers.
+        </p>
+        <p class="cta">
+          The longer action is delayed, the steeper this curve becomes.
+          <strong>Plan for it now.</strong>
+        </p>
+        <p class="note">Brush the temperature timeline &middot; clear the selection to reset.</p>
+      </div>
+
+    </article>
+
+    <!-- Right: the sticky visualisation stage -->
+    <figure id="stage">
+      <div class="viz-panel" id="panel-area">
+        <div class="panel-title" id="title-area">Global Temperature Anomaly</div>
+        <div class="chart" id="chart-area"></div>
+      </div>
+
+      <div class="viz-panel" id="panel-map">
+        <div class="panel-title" id="title-map">Recorded Climate Disasters</div>
+        <div class="chart" id="chart-map"></div>
+      </div>
+
+      <div class="viz-panel" id="panel-bar">
+        <div class="panel-title" id="title-bar">Total Economic Damage by Decade</div>
+        <div class="chart" id="chart-bar"></div>
+      </div>
+
+      <div class="legend" id="legend"></div>
+      <div class="explore-banner" id="explore-banner">Exploration mode &mdash; brush the timeline below</div>
+    </figure>
+
+  </main>
+
+  <footer class="outro">
+    <p>
+      Data: EM-DAT International Disaster Database (climate &amp; weather events) and
+      global surface-temperature anomaly records. Built with HTML, CSS and D3.js v7.
+    </p>
+  </footer>
+
+  <!-- HTML tooltip shared by map + bar (details-on-demand) -->
+  <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
+
+  <!-- Libraries via CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+  <script src="https://cdn.jsdelivr.net/npm/scrollama@3"></script>
+  <script src="main.js"></script>
+</body>
+</html>
