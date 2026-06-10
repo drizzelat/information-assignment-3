@@ -163,6 +163,10 @@ function createAreaChart(selector, tempData) {
     revealTo(year, duration = 1200) {
       revealYear = year;
       if (!clip) return;
+      if (duration === 0) {            // instant — used for scroll-progress scrubbing
+        clip.interrupt().attr("width", x(year));
+        return;
+      }
       clip.transition().duration(duration).ease(d3.easeCubicInOut)
         .attr("width", x(year));
     },
@@ -497,11 +501,10 @@ Promise.all([
         showOnly("area");
         area.revealTo(1950);
         break;
-      case 1: // The Shift
+      case 1: // The Shift — the line is drawn out by scroll progress (see onStepProgress)
         leaveExploreIfNeeded();
         setLegend(false);
         showOnly("area");
-        area.revealTo(1990);
         break;
       case 2: // Emergence of Extremes
         leaveExploreIfNeeded();
@@ -542,12 +545,27 @@ Promise.all([
   // initial state before scroll
   activateStep(0);
 
+  // Step 2 reveals the temperature line progressively as the user scrolls:
+  // 1950 (continuing from Step 1) -> present, completing before Step 3 (the map).
+  const SHIFT_FROM = 1950, SHIFT_TO = 2026;
+  function shiftYear(progress) {
+    const p = Math.min(progress / 0.85, 1);   // fully drawn at 85% through the step
+    return SHIFT_FROM + p * (SHIFT_TO - SHIFT_FROM);
+  }
+
   const scroller = scrollama();
   scroller
-    .setup({ step: "#scrolly .step", offset: 0.55 })
+    .setup({ step: "#scrolly .step", offset: 0.55, progress: true })
     .onStepEnter((response) => {
       response.element.classList.add("is-active");
       activateStep(response.index);
+      if (response.index === 1) {
+        // sensible starting point so there is no flash before progress fires
+        area.revealTo(response.direction === "up" ? SHIFT_TO : SHIFT_FROM, 300);
+      }
+    })
+    .onStepProgress((response) => {
+      if (response.index === 1) area.revealTo(shiftYear(response.progress), 0);
     })
     .onStepExit((response) => {
       response.element.classList.remove("is-active");
