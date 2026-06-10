@@ -1,0 +1,12 @@
+# Raw data & preprocessing (not needed to run the app)
+*.csv
+preprocess.py
+
+# Course materials
+*.pdf
+feedback.md
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
