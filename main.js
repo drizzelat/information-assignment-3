@@ -159,7 +159,7 @@ function createAreaChart(selector, tempData) {
   function attachBrush(iw, ih) {
     brushG.call(brush);
     brushG.append("text").attr("class", "brush-hint")
-      .attr("x", 6).attr("y", 14).text("↔ drag to select a period");
+      .attr("x", 6).attr("y", 14).text("drag to select a period or to move it");
   }
 
   function brushed(event) {
