@@ -6,13 +6,21 @@
 "use strict";
 
 // ---- shared config -----------------------------------------------------
+/*const TYPE_COLORS = {
+  "Flood":               "#2671a0",
+  "Storm":               "#92cfe9",
+  "Drought":             "#be8b50",
+  "Wildfire":            "#d33418",
+  "Extreme temperature": "#fbb235",
+  "Landslide":           "#888070",
+};*/
 const TYPE_COLORS = {
-  "Flood":               "#3aa0ff",
-  "Storm":               "#9b6bff",
-  "Drought":             "#ffb347",
-  "Wildfire":            "#ff5a4d",
-  "Extreme temperature": "#ff8fb3",
-  "Landslide":           "#8d6e63",
+  "Flood":               "#4A9EC4",  // cleaner, more saturated cyan-blue
+  "Storm":               "#7B5EA7",  // deeper, more distinct purple
+  "Drought":             "#f6e08a",  // fine
+  "Wildfire":            "#C0392B",  // slightly more vivid red
+  "Extreme temperature": "#E07B2A",  // brighter orange, separates from red
+  "Landslide":           "#5A8F4A",  // darker green for better contrast
 };
 const TYPE_ORDER = ["Flood", "Storm", "Drought", "Wildfire", "Extreme temperature", "Landslide"];
 
@@ -67,6 +75,7 @@ function createAreaChart(selector, tempData) {
   const root = d3.select(selector);
   const series = tempData.series;
   const years = d3.extent(series, (d) => d.year);
+  const uid = selector.replace(/[^a-z0-9]/gi, "");
 
   let svg, x, y, clip, areaPath, linePath, brushG, brush;
   let brushEnabled = false;
@@ -90,19 +99,23 @@ function createAreaChart(selector, tempData) {
     const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
 
     x = d3.scaleLinear().domain(years).range([0, iw]);
+    const ref = series.filter(d => d.year >= 1900 && d.year <= 1929);
+    const refMean = ref.reduce((s, d) => s + d.anomaly, 0) / ref.length;
+    const adj = (d) => d.anomaly - refMean;
     const yPad = 0.15;
     y = d3.scaleLinear()
-      .domain([d3.min(series, (d) => d.anomaly) - yPad, d3.max(series, (d) => d.anomaly) + yPad])
+      .domain([d3.min(series, adj) - yPad, d3.max(series, adj) + yPad])
       .range([ih, 0]);
 
     // gradient fill
     const defs = svg.append("defs");
-    const grad = defs.append("linearGradient").attr("id", "area-grad").attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 1);
-    grad.append("stop").attr("offset", "0%").attr("stop-color", "#ff6b4a").attr("stop-opacity", 0.85);
-    grad.append("stop").attr("offset", "100%").attr("stop-color", "#ff6b4a").attr("stop-opacity", 0.05);
+    const grad = defs.append("linearGradient").attr("id", `area-grad-${uid}`).attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 1);
+    const yellow = getComputedStyle(document.documentElement).getPropertyValue("--yellow").trim();
+    grad.append("stop").attr("offset", "0%").attr("stop-color", yellow).attr("stop-opacity", 0.55);
+    grad.append("stop").attr("offset", "100%").attr("stop-color", yellow).attr("stop-opacity", 0.03);
 
     // reveal clip
-    clip = defs.append("clipPath").attr("id", "area-clip").append("rect")
+    clip = defs.append("clipPath").attr("id", `area-clip-${uid}`).append("rect")
       .attr("x", 0).attr("y", -margin.top).attr("height", height).attr("width", x(revealYear));
 
     // gridlines
@@ -113,21 +126,21 @@ function createAreaChart(selector, tempData) {
     g.append("line").attr("class", "zero-line")
       .attr("x1", 0).attr("x2", iw).attr("y1", y(0)).attr("y2", y(0));
     g.append("text").attr("class", "axis-label")
-      .attr("x", 4).attr("y", y(0) - 5).text("baseline (0°C)");
+      .attr("x", iw).attr("y", y(0) - 5).attr("text-anchor", "end").text("1900–1929 average");
 
     const area = d3.area()
       .x((d) => x(d.year))
       .y0(ih)
-      .y1((d) => y(d.anomaly))
+      .y1((d) => y(adj(d)))
       .curve(d3.curveMonotoneX);
     const line = d3.line()
       .x((d) => x(d.year))
-      .y((d) => y(d.anomaly))
+      .y((d) => y(adj(d)))
       .curve(d3.curveMonotoneX);
 
-    const clipped = g.append("g").attr("clip-path", "url(#area-clip)");
+    const clipped = g.append("g").attr("clip-path", `url(#area-clip-${uid})`);
     areaPath = clipped.append("path").datum(series).attr("class", "area-fill")
-      .attr("fill", "url(#area-grad)").attr("d", area);
+      .attr("fill", `url(#area-grad-${uid})`).attr("d", area);
     linePath = clipped.append("path").datum(series).attr("class", "area-line").attr("d", line);
 
     // axes
@@ -359,7 +372,7 @@ function createStackedBar(selector, disasterData) {
       .call(d3.axisLeft(y).ticks(5).tickFormat(fmtBillionsAxis));
 
     gPlot.append("text").attr("class", "axis-label")
-      .attr("transform", "rotate(-90)").attr("x", -ih / 2).attr("y", -margin.left + 14)
+      .attr("transform", "rotate(-90)").attr("x", -ih / 2).attr("y", -margin.left + 4)
       .attr("text-anchor", "middle").text("Total adjusted damage (US$)");
 
     // render instantly at current state (keeps bars correct across resizes;
@@ -499,7 +512,7 @@ Promise.all([
         leaveExploreIfNeeded();
         setLegend(false);
         showOnly("area");
-        area.revealTo(1950);
+        area.revealTo(1929);
         break;
       case 1: // The Shift — the line is drawn out by scroll progress (see onStepProgress)
         leaveExploreIfNeeded();
@@ -547,7 +560,7 @@ Promise.all([
 
   // Step 2 reveals the temperature line progressively as the user scrolls:
   // 1950 (continuing from Step 1) -> present, completing before Step 3 (the map).
-  const SHIFT_FROM = 1950, SHIFT_TO = 2026;
+  const SHIFT_FROM = 1929, SHIFT_TO = 2026;
   function shiftYear(progress) {
     const p = Math.min(progress / 0.85, 1);   // fully drawn at 85% through the step
     return SHIFT_FROM + p * (SHIFT_TO - SHIFT_FROM);
