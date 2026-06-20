@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Cost of Inaction — Presentation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css" id="theme" />
+
+  <style>
+    :root {
+      --bg: #181c18;
+      --panel: #242824;
+      --ink: #F1EEE7;
+      --ink-dim: #C3BCB0;
+      --accent: #FF6A45;
+      --yellow: #F4ED4A;
+      --line: #41443A;
+      --flood: #4A9EC4; --storm: #7B5EA7; --drought: #f6e08a;
+      --wildfire: #C0392B; --extreme: #E07B2A; --landslide: #5A8F4A;
+    }
+
+    .reveal { font-family: "DM Mono", monospace; font-weight: 400; color: var(--ink); font-size: 32px; }
+    .reveal .slides { text-align: left; }
+    .reveal .slides section { height: 100%; }
+    .reveal section.compact { font-size: 0.88em; }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: "Bebas Neue", sans-serif; font-weight: 400;
+      color: var(--ink); letter-spacing: 0.01em; text-transform: none; line-height: 0.98;
+    }
+    .reveal h1 { font-size: 2.6em; }
+    .reveal h2 { font-size: 1.9em; margin-bottom: 0.4em; }
+    .reveal h3 { font-size: 1.2em; color: var(--yellow); }
+    .reveal strong { color: var(--ink); font-weight: 500; }
+    .reveal em { color: var(--yellow); font-style: normal; }
+    .reveal a { color: var(--yellow); }
+    .reveal section.present { background: var(--bg); }
+
+    .reveal-viewport { background: var(--bg); }
+
+    .eyebrow {
+      font-size: 0.5em; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--yellow); margin: 0 0 0.6em; display: flex; align-items: center; gap: 14px;
+    }
+    .eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--yellow); }
+
+    .reveal p, .reveal li { line-height: 1.6; }
+    .reveal ul { margin-left: 0.4em; }
+    .reveal li { margin: 0.34em 0; }
+    .dim { color: var(--ink-dim); }
+    .note { font-size: 0.66em; color: var(--ink-dim); letter-spacing: 0.08em;
+            text-transform: uppercase; border-left: 3px solid color-mix(in srgb, var(--yellow) 55%, transparent);
+            padding-left: 12px; }
+
+    .big-num { font-family: "Bebas Neue", sans-serif; color: var(--yellow); font-size: 2.2em; line-height: 1; }
+    .num-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1em; margin-top: 0.6em; }
+    .num-grid .lbl { font-size: 0.68em; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6em; }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+            padding: 0.85em 1.05em; }
+    .card h3 { margin: 0 0 0.3em; }
+    .card p, .card ul { font-size: 0.8em; margin: 0; }
+
+    .pill { display: inline-block; font-size: 0.55em; letter-spacing: 0.06em;
+            border: 1px solid var(--line); border-radius: 999px; padding: 0.15em 0.7em;
+            color: var(--ink-dim); margin: 0.15em 0.3em 0.15em 0; }
+
+    .swatch { display: inline-block; width: 0.7em; height: 0.7em; border-radius: 3px;
+              margin-right: 0.4em; vertical-align: baseline; }
+
+    .reveal .slide-number { font-family: "DM Mono", monospace; background: none; color: var(--ink-dim); }
+    .reveal .progress { color: var(--yellow); }
+
+    .title-slide .w-strike { position: relative; display: inline-block; }
+    .title-slide .w-strike::after { content: ''; position: absolute; left: 0; top: 52%;
+            width: 100%; height: 5px; background: var(--yellow); }
+
+    .footer-meta { font-size: 0.62em; color: var(--ink-dim); }
+    .todo { color: var(--accent); font-weight: 500; }
+    .demo-tag { color: var(--accent); font-family: "Bebas Neue", sans-serif;
+                letter-spacing: 0.12em; font-size: 1.1em; }
+    table.steps { font-size: 0.72em; border-collapse: collapse; width: 100%; }
+    table.steps td { padding: 0.32em 0.6em; border-bottom: 1px solid var(--line); vertical-align: top; }
+    table.steps td:first-child { color: var(--yellow); font-family: "Bebas Neue", sans-serif;
+                font-size: 1.4em; width: 1.4em; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <!-- ============ 1 · TITLE (elevator pitch) ============ -->
+  <section class="title-slide" data-background-color="#191d1a">
+    <p class="eyebrow">Municipal Policy Brief · Climate Economics</p>
+    <h1>The Cost<br /><span class="dim" style="font-size:0.5em">of</span><br /><span class="w-strike">Inaction</span></h1>
+    <p style="margin-top:1em; max-width:18em;" class="dim">
+      How a warming planet is handing local governments an <em>exponential</em> bill for climate disasters.
+    </p>
+    <p class="footer-meta" style="margin-top:1.4em;">
+      <span>Baumann Liam · Emre Zeynep · Zell Stefan</span><br />
+      Information Visualization · Assignment 3 · TU Wien
+    </p>
+    <aside class="notes">
+      30s. One person opens. "The cost of inaction" — we connect rising global temperature to the
+      money local governments spend cleaning up climate disasters. Introduce the 3 of us. Then hand to the pitch.
+    </aside>
+  </section>
+
+  <!-- ============ 2 · MOTIVATION ============ -->
+  <section class="compact" data-background-color="#141714">
+    <p class="eyebrow">The Problem</p>
+    <h2>Climate damage isn't rising gently — it's accelerating</h2>
+    <div class="two-col" style="align-items:center;">
+      <div>
+        <ul>
+          <li>Climate &amp; weather disasters used to be a line item. Now they reshape budgets.</li>
+          <li>The damage curve bends <em>upward</em>, decade after decade — far faster than population or inflation alone.</li>
+          <li>The bill lands <strong>locally</strong>: floods, storms, droughts, wildfires hit cities and regions first.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>1900 → 2026, in numbers</h3>
+        <div class="num-grid">
+          <div><div class="big-num">$6.3T</div><div class="lbl">Total adjusted damage</div></div>
+          <div><div class="big-num">+1.2°C</div><div class="lbl">Warming vs 1900s</div></div>
+          <div><div class="big-num">4.6×</div><div class="lbl">1980s → 2010s damage</div></div>
+        </div>
+      </div>
+    </div>
+    <aside class="notes">
+      ~40s. Hook with the numbers card. $6.3 trillion in inflation-adjusted damage over the record;
+      the planet is ~1.2°C warmer than the 1900s baseline; decade damage grew 4.6× from the 1980s to the 2010s.
+      This is the gap we want a policymaker to feel.
+    </aside>
+  </section>
+
+  <!-- ============ 3 · DATA ============ -->
+  <section class="compact" data-background-color="#141714">
+    <p class="eyebrow">The Data</p>
+    <h2>Two public datasets, one honest correlation</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>EM-DAT — disaster impacts</h3>
+        <ul>
+          <li>International Disaster Database (CRED / UCLouvain)</li>
+          <li>Filtered to <strong>climate &amp; weather</strong> events only (hydro / meteo / climatological)</li>
+          <li>Inflation-adjusted damage, event counts, region, type, year</li>
+        </ul>
+        <p class="note" style="margin-top:0.6em;">~1,850 aggregated records · 1900–2026</p>
+      </div>
+      <div class="card">
+        <h3>Global temperature anomaly</h3>
+        <ul>
+          <li>Observed monthly anomalies → annual mean (1940+)</li>
+          <li>Pre-1940 back-filled from <strong>NASA GISTEMP</strong>, rebased to the observed series</li>
+          <li>127 annual points · 1900–2026</li>
+        </ul>
+        <p class="note" style="margin-top:0.6em;">Both preprocessed in Python → lightweight JSON</p>
+      </div>
+    </div>
+    <aside class="notes">
+      ~35s. Why two datasets: one for the cause (temperature), one for the consequence (cost).
+      Stress the climate-only filter — that's a design decision that keeps the correlation legitimate,
+      and it answers a likely Q&A question.
+    </aside>
+  </section>
+
+  <!-- ============ 4 · AUDIENCE & GOAL ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">Audience &amp; Goal</p>
+    <h2>For municipal policymakers</h2>
+    <div class="two-col">
+      <div>
+        <h3>Who</h3>
+        <p>City &amp; regional decision-makers who set budgets and plan infrastructure — a <strong>specialized</strong> audience that can act on detail.</p>
+        <h3 style="margin-top:0.7em;">The action we want</h3>
+        <p>Move climate adaptation up the budget agenda <em>now</em> — frame inaction as a compounding cost, not a distant risk.</p>
+      </div>
+      <div>
+        <h3>How we frame it</h3>
+        <ul>
+          <li><strong>Guided story first</strong> — build the cause → consequence argument step by step.</li>
+          <li><strong>Then hand over control</strong> — let them interrogate their own region / time range.</li>
+          <li>Concrete money figures, not abstractions.</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="notes">
+      ~30s. This directly addresses the Assignment-2 feedback: name the audience and the action.
+      Goal = provoke budget prioritization of adaptation. End of elevator pitch (~2 min). Hand to demo presenter.
+    </aside>
+  </section>
+
+  <!-- ============ 5 · STORY STRUCTURE ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">The Demo · Narrative</p>
+    <h2>One scroll, six narrative steps</h2>
+    <table class="steps">
+      <tr><td>1</td><td><strong>The Baseline</strong> — temperature sits low, 1900–1929. <span class="dim">Establish "normal".</span></td></tr>
+      <tr><td>2</td><td><strong>The Shift</strong> — the line is drawn out by your scroll, climbing to today. <span class="dim">The cause.</span></td></tr>
+      <tr><td>3</td><td><strong>Emergence of Extremes</strong> — disasters on the map up to 1990. <span class="dim">It lands somewhere.</span></td></tr>
+      <tr><td>4</td><td><strong>The Modern Crisis</strong> — extend to 2026; bubbles swell. <span class="dim">It accelerates.</span></td></tr>
+      <tr><td>5</td><td><strong>The Economic Toll</strong> — damage stacked by decade. <span class="dim">The consequence.</span></td></tr>
+      <tr><td>6</td><td><strong>Explore</strong> — brush the timeline; map + bars react. <span class="dim">Now it's yours.</span></td></tr>
+    </table>
+    <aside class="notes">
+      ~30s. This is the roadmap for the live demo. The whole piece is a single scroll: a guided argument
+      that ends by handing control to the user. Then switch to the live app.
+    </aside>
+  </section>
+
+  <!-- ============ 6 · FORMAL REQUIREMENTS ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">The Demo · Requirements met</p>
+    <h2>3 components · 3 interactions · 6 views</h2>
+    <div class="two-col">
+      <div class="card">
+        <h3>Visualization components</h3>
+        <ul>
+          <li>Temperature area chart</li>
+          <li>Geographic bubble map</li>
+          <li>Stacked bar chart (damage / decade)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Interaction techniques</h3>
+        <ul>
+          <li>Scrollytelling triggers &amp; scroll-scrubbed reveal</li>
+          <li>Brushing &amp; linking (3 coordinated views)</li>
+          <li>Details-on-demand tooltips</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="notes">
+      ~25s. Tick the rubric explicitly so graders can check the box. 3 team members → 3 components, 6 views.
+      Mention pure D3, no Tableau/Power BI.
+    </aside>
+  </section>
+
+  <!-- ============ 7 · LIVE DEMO ============ -->
+  <section data-background-color="#191d1a">
+    <p class="demo-tag">▶ LIVE DEMO</p>
+    <h2 style="margin-top:0.2em;">Insights to land</h2>
+    <ul style="font-size:0.82em;">
+      <li>The temperature line that drives the story <em>never resets</em> — it's the same warming you scrolled past, now written across the map.</li>
+      <li><strong>Storms (55%) + floods (30%) = 86%</strong> of all damage — and they're the most temperature-sensitive types.</li>
+      <li>Decade damage: <strong>$381B (1980s) → $1.76T (2010s)</strong>; the 2020s already passed <strong>$1.3T</strong> in ~6 years.</li>
+      <li><strong>North America &amp; Asia</strong> carry ~80% of the cost — brush a decade and watch where the weight shifts.</li>
+    </ul>
+    <aside class="notes">
+      ~3.5 min of the 5-min demo runs HERE in the actual app. Keep this slide as a fallback if the live demo fails.
+      Drive the scroll slowly through all 6 steps narrating cause→consequence, then do the brush comparison
+      and one tooltip. End on the exponential bar chart.
+    </aside>
+  </section>
+
+  <!-- ============ 8 · DESIGN RATIONALE: ENCODING ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">Design Rationale · Encoding</p>
+    <h2>Why these visuals</h2>
+    <ul style="font-size:0.78em;">
+      <li><strong>Area chart</strong> for temperature — a continuous, filled trend reads as a single rising force; the 1900s baseline at zero makes "above normal" instantly legible.</li>
+      <li><strong>Bubble map</strong> for disasters — area encodes inflation-adjusted damage (perceptually honest via a √-scale); position = geography; colour = disaster type.</li>
+      <li><strong>Stacked bars</strong> for the toll — decades on x, damage on y; stacking shows both the exploding total <em>and</em> the type mix in one mark.</li>
+      <li><strong>Shared colour language</strong> — the six disaster types use one palette across map, bars and legend, so the eye links them without a key lookup.</li>
+    </ul>
+    <aside class="notes">
+      ~30s. Directly answers the Assignment-2 feedback that rationale was missing. Note the √-scale for area
+      (perceptually correct), zero baseline, and the consistent palette tying the three views together.
+    </aside>
+  </section>
+
+  <!-- ============ 9 · DESIGN RATIONALE: INTERACTION & LAYOUT ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">Design Rationale · Interaction</p>
+    <h2>Why this flow</h2>
+    <div class="two-col">
+      <div>
+        <h3>Author-driven, then reader-driven</h3>
+        <p style="font-size:0.82em;">Steps 1–5 are a guided argument (Martini-glass model); step 6 opens into free exploration. Newcomers get the story; experts get the data.</p>
+        <h3 style="margin-top:0.6em;">Sticky stage, scrolling text</h3>
+        <p style="font-size:0.82em;">Two columns: prose on the left drives a fixed visual on the right, so context and chart stay in view together.</p>
+      </div>
+      <div>
+        <h3>Brushing &amp; linking</h3>
+        <p style="font-size:0.82em;">One brush on the timeline filters <strong>both</strong> the map and the bars — this is what makes the temperature↔damage correlation explorable, the exact gap the proposal feedback flagged.</p>
+        <h3 style="margin-top:0.6em;">Reuse &amp; transitions</h3>
+        <p style="font-size:0.82em;">Charts persist across steps and animate between states, so the warming line is literally the same object throughout — reinforcing continuity.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      ~35s. Explains the interaction rationale (other gap from feedback): why guided-then-open, why the brush
+      links all views, why the sticky two-column layout. End of the 5-min demo block.
+    </aside>
+  </section>
+
+  <!-- ============ 10 · TAKEAWAY ============ -->
+  <section data-background-color="#191d1a">
+    <p class="eyebrow">Takeaway</p>
+    <h1 style="font-size:2em;">The longer action is delayed,<br />the steeper this curve becomes.</h1>
+    <p class="dim" style="margin-top:0.6em; max-width:20em;">
+      We turn an abstract degree of warming into a concrete, local, and <em>growing</em> bill — so the case for adaptation is impossible to defer.
+    </p>
+    <aside class="notes">
+      ~15s. The one sentence we want them to remember. Pivot to Q&A.
+    </aside>
+  </section>
+
+  <!-- ============ 11 · CONTRIBUTION STATEMENT (required) ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">Submission · Contributions</p>
+    <h2>Who did what</h2>
+    <ul style="font-size:0.8em;">
+      <li><span>Baumann Liam</span> — <span class="todo">Visualization refinement, scrollytelling refinement</span></li>
+      <li><span>Emre Zeynep</span> — <span class="todo">Texts</span></li>
+      <li><span>Zell Stefan</span> — <span>Python data preprocessing, presentation slides, initial scrollytelling implementation</span></li>
+      <li>All team members contributed to the project proposal, design rationale and final review.</li>
+    </ul>
+    <aside class="notes">Required by the assignment. Replace placeholders before exporting the PDF.</aside>
+  </section>
+
+  <!-- ============ 12 · LINKS (required) ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">Submission · Links</p>
+    <h2>Where to find it</h2>
+    <p style="font-size:0.9em;">
+      🌐 Deployed visualization<br />
+      <span class="todo">[https://your-deployment-url]</span>
+    </p>
+    <p style="font-size:0.9em; margin-top:1em;">
+      💻 Source code (GitHub)<br />
+      <span class="todo">[https://github.com/your-org/your-repo]</span>
+    </p>
+    <aside class="notes">Required. Both links must be on a slide AND in the TUWEL comment box.</aside>
+  </section>
+
+  <!-- ============ 13 · AI DISCLOSURE (required) ============ -->
+  <section data-background-color="#141714">
+    <p class="eyebrow">Submission · Generative AI Disclosure</p>
+    <h2>Use of generative AI</h2>
+    <p style="font-size:0.82em;">
+      Generative AI tools were used to <strong>assist implementation</strong> of Assignment 3, in line with the course policy and TU Wien guidelines:
+    </p>
+    <ul style="font-size:0.8em;">
+      <li><strong>Assisted by AI:</strong> <span>boilerplate of the D3 components and scrollytelling wiring, the Python preprocessing script, CSS scaffolding, README and these slides</span>.</li>
+      <li><strong>Authored / decided by the team:</strong> the topic, story, design rationale, audience framing, data selection &amp; filtering choices, and final wording.</li>
+      <li>All AI-assisted code was <strong>reviewed, understood and modified</strong> by the team; we can explain and change any part.</li>
+      <li>Tool used: <span>Claude Code</span>.</li>
+    </ul>
+    <aside class="notes">
+      Required and allowed for A3 (note: A2 did NOT allow AI). Make the bullets match reality. Last slide — open Q&A.
+    </aside>
+  </section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: "c/t",
+    transition: "fade",
+    center: false,
+    width: 1280,
+    height: 720,
+    margin: 0.06,
+    plugins: [RevealNotes],
+  });
+</script>
+</body>
+</html>
