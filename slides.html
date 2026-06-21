@@ -85,7 +85,7 @@
     .footer-meta { font-size: 0.62em; color: var(--ink-dim); }
     .todo { color: var(--accent); font-weight: 500; }
     .demo-tag { color: var(--accent); font-family: "Bebas Neue", sans-serif;
-                letter-spacing: 0.12em; font-size: 1.1em; }
+                letter-spacing: 0.12em; font-size: 4.5em; text-align: center; margin: 0; }
     table.steps { font-size: 0.72em; border-collapse: collapse; width: 100%; }
     table.steps td { padding: 0.32em 0.6em; border-bottom: 1px solid var(--line); vertical-align: top; }
     table.steps td:first-child { color: var(--yellow); font-family: "Bebas Neue", sans-serif;
@@ -116,12 +116,12 @@
   <!-- ============ 2 · MOTIVATION ============ -->
   <section class="compact" data-background-color="#141714">
     <p class="eyebrow">The Problem</p>
-    <h2>Climate damage isn't rising gently — it's accelerating</h2>
+    <h2>Climate damage is accelerating quickly</h2>
     <div class="two-col" style="align-items:center;">
       <div>
         <ul>
           <li>Climate &amp; weather disasters used to be a line item. Now they reshape budgets.</li>
-          <li>The damage curve bends <em>upward</em>, decade after decade — far faster than population or inflation alone.</li>
+          <li>The damage curve bends <em>upward</em>, decade after decade, far faster than population or inflation alone.</li>
           <li>The bill lands <strong>locally</strong>: floods, storms, droughts, wildfires hit cities and regions first.</li>
         </ul>
       </div>
@@ -130,7 +130,7 @@
         <div class="num-grid">
           <div><div class="big-num">$6.3T</div><div class="lbl">Total adjusted damage</div></div>
           <div><div class="big-num">+1.2°C</div><div class="lbl">Warming vs 1900s</div></div>
-          <div><div class="big-num">4.6×</div><div class="lbl">1980s → 2010s damage</div></div>
+          <div><div class="big-num">4.6x</div><div class="lbl">1980s → 2010s damage</div></div>
         </div>
       </div>
     </div>
@@ -144,7 +144,7 @@
   <!-- ============ 3 · DATA ============ -->
   <section class="compact" data-background-color="#141714">
     <p class="eyebrow">The Data</p>
-    <h2>Two public datasets, one honest correlation</h2>
+    <h2>Our Datasets</h2>
     <div class="two-col">
       <div class="card">
         <h3>EM-DAT — disaster impacts</h3>
@@ -179,15 +179,15 @@
     <div class="two-col">
       <div>
         <h3>Who</h3>
-        <p>City &amp; regional decision-makers who set budgets and plan infrastructure — a <strong>specialized</strong> audience that can act on detail.</p>
+        <p>City &amp; regional decision-makers who set budgets and plan infrastructure, a <strong>specialized</strong> audience that can act on detail.</p>
         <h3 style="margin-top:0.7em;">The action we want</h3>
-        <p>Move climate adaptation up the budget agenda <em>now</em> — frame inaction as a compounding cost, not a distant risk.</p>
+        <p>Move climate adaptation up the budget agenda <em>now</em>, frame inaction as a compounding cost, not a distant risk.</p>
       </div>
       <div>
         <h3>How we frame it</h3>
         <ul>
-          <li><strong>Guided story first</strong> — build the cause → consequence argument step by step.</li>
-          <li><strong>Then hand over control</strong> — let them interrogate their own region / time range.</li>
+          <li><strong>Guided story first</strong>: build the cause → consequence argument step by step.</li>
+          <li><strong>Then hand over control</strong>: let them interrogate their own region / time range.</li>
           <li>Concrete money figures, not abstractions.</li>
         </ul>
       </div>
@@ -198,119 +198,9 @@
     </aside>
   </section>
 
-  <!-- ============ 5 · STORY STRUCTURE ============ -->
-  <section data-background-color="#141714">
-    <p class="eyebrow">The Demo · Narrative</p>
-    <h2>One scroll, six narrative steps</h2>
-    <table class="steps">
-      <tr><td>1</td><td><strong>The Baseline</strong> — temperature sits low, 1900–1929. <span class="dim">Establish "normal".</span></td></tr>
-      <tr><td>2</td><td><strong>The Shift</strong> — the line is drawn out by your scroll, climbing to today. <span class="dim">The cause.</span></td></tr>
-      <tr><td>3</td><td><strong>Emergence of Extremes</strong> — disasters on the map up to 1990. <span class="dim">It lands somewhere.</span></td></tr>
-      <tr><td>4</td><td><strong>The Modern Crisis</strong> — extend to 2026; bubbles swell. <span class="dim">It accelerates.</span></td></tr>
-      <tr><td>5</td><td><strong>The Economic Toll</strong> — damage stacked by decade. <span class="dim">The consequence.</span></td></tr>
-      <tr><td>6</td><td><strong>Explore</strong> — brush the timeline; map + bars react. <span class="dim">Now it's yours.</span></td></tr>
-    </table>
-    <aside class="notes">
-      ~30s. This is the roadmap for the live demo. The whole piece is a single scroll: a guided argument
-      that ends by handing control to the user. Then switch to the live app.
-    </aside>
-  </section>
-
-  <!-- ============ 6 · FORMAL REQUIREMENTS ============ -->
-  <section data-background-color="#141714">
-    <p class="eyebrow">The Demo · Requirements met</p>
-    <h2>3 components · 3 interactions · 6 views</h2>
-    <div class="two-col">
-      <div class="card">
-        <h3>Visualization components</h3>
-        <ul>
-          <li>Temperature area chart</li>
-          <li>Geographic bubble map</li>
-          <li>Stacked bar chart (damage / decade)</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Interaction techniques</h3>
-        <ul>
-          <li>Scrollytelling triggers &amp; scroll-scrubbed reveal</li>
-          <li>Brushing &amp; linking (3 coordinated views)</li>
-          <li>Details-on-demand tooltips</li>
-        </ul>
-      </div>
-    </div>
-    <aside class="notes">
-      ~25s. Tick the rubric explicitly so graders can check the box. 3 team members → 3 components, 6 views.
-      Mention pure D3, no Tableau/Power BI.
-    </aside>
-  </section>
-
   <!-- ============ 7 · LIVE DEMO ============ -->
   <section data-background-color="#191d1a">
     <p class="demo-tag">▶ LIVE DEMO</p>
-    <h2 style="margin-top:0.2em;">Insights to land</h2>
-    <ul style="font-size:0.82em;">
-      <li>The temperature line that drives the story <em>never resets</em> — it's the same warming you scrolled past, now written across the map.</li>
-      <li><strong>Storms (55%) + floods (30%) = 86%</strong> of all damage — and they're the most temperature-sensitive types.</li>
-      <li>Decade damage: <strong>$381B (1980s) → $1.76T (2010s)</strong>; the 2020s already passed <strong>$1.3T</strong> in ~6 years.</li>
-      <li><strong>North America &amp; Asia</strong> carry ~80% of the cost — brush a decade and watch where the weight shifts.</li>
-    </ul>
-    <aside class="notes">
-      ~3.5 min of the 5-min demo runs HERE in the actual app. Keep this slide as a fallback if the live demo fails.
-      Drive the scroll slowly through all 6 steps narrating cause→consequence, then do the brush comparison
-      and one tooltip. End on the exponential bar chart.
-    </aside>
-  </section>
-
-  <!-- ============ 8 · DESIGN RATIONALE: ENCODING ============ -->
-  <section data-background-color="#141714">
-    <p class="eyebrow">Design Rationale · Encoding</p>
-    <h2>Why these visuals</h2>
-    <ul style="font-size:0.78em;">
-      <li><strong>Area chart</strong> for temperature — a continuous, filled trend reads as a single rising force; the 1900s baseline at zero makes "above normal" instantly legible.</li>
-      <li><strong>Bubble map</strong> for disasters — area encodes inflation-adjusted damage (perceptually honest via a √-scale); position = geography; colour = disaster type.</li>
-      <li><strong>Stacked bars</strong> for the toll — decades on x, damage on y; stacking shows both the exploding total <em>and</em> the type mix in one mark.</li>
-      <li><strong>Shared colour language</strong> — the six disaster types use one palette across map, bars and legend, so the eye links them without a key lookup.</li>
-    </ul>
-    <aside class="notes">
-      ~30s. Directly answers the Assignment-2 feedback that rationale was missing. Note the √-scale for area
-      (perceptually correct), zero baseline, and the consistent palette tying the three views together.
-    </aside>
-  </section>
-
-  <!-- ============ 9 · DESIGN RATIONALE: INTERACTION & LAYOUT ============ -->
-  <section data-background-color="#141714">
-    <p class="eyebrow">Design Rationale · Interaction</p>
-    <h2>Why this flow</h2>
-    <div class="two-col">
-      <div>
-        <h3>Author-driven, then reader-driven</h3>
-        <p style="font-size:0.82em;">Steps 1–5 are a guided argument (Martini-glass model); step 6 opens into free exploration. Newcomers get the story; experts get the data.</p>
-        <h3 style="margin-top:0.6em;">Sticky stage, scrolling text</h3>
-        <p style="font-size:0.82em;">Two columns: prose on the left drives a fixed visual on the right, so context and chart stay in view together.</p>
-      </div>
-      <div>
-        <h3>Brushing &amp; linking</h3>
-        <p style="font-size:0.82em;">One brush on the timeline filters <strong>both</strong> the map and the bars — this is what makes the temperature↔damage correlation explorable, the exact gap the proposal feedback flagged.</p>
-        <h3 style="margin-top:0.6em;">Reuse &amp; transitions</h3>
-        <p style="font-size:0.82em;">Charts persist across steps and animate between states, so the warming line is literally the same object throughout — reinforcing continuity.</p>
-      </div>
-    </div>
-    <aside class="notes">
-      ~35s. Explains the interaction rationale (other gap from feedback): why guided-then-open, why the brush
-      links all views, why the sticky two-column layout. End of the 5-min demo block.
-    </aside>
-  </section>
-
-  <!-- ============ 10 · TAKEAWAY ============ -->
-  <section data-background-color="#191d1a">
-    <p class="eyebrow">Takeaway</p>
-    <h1 style="font-size:2em;">The longer action is delayed,<br />the steeper this curve becomes.</h1>
-    <p class="dim" style="margin-top:0.6em; max-width:20em;">
-      We turn an abstract degree of warming into a concrete, local, and <em>growing</em> bill — so the case for adaptation is impossible to defer.
-    </p>
-    <aside class="notes">
-      ~15s. The one sentence we want them to remember. Pivot to Q&A.
-    </aside>
   </section>
 
   <!-- ============ 11 · CONTRIBUTION STATEMENT (required) ============ -->
@@ -318,9 +208,9 @@
     <p class="eyebrow">Submission · Contributions</p>
     <h2>Who did what</h2>
     <ul style="font-size:0.8em;">
-      <li><span>Baumann Liam</span> — <span class="todo">Visualization refinement, scrollytelling refinement</span></li>
-      <li><span>Emre Zeynep</span> — <span class="todo">Texts</span></li>
-      <li><span>Zell Stefan</span> — <span>Python data preprocessing, presentation slides, initial scrollytelling implementation</span></li>
+      <li><span>Baumann Liam</span> — <span>Visualization refinements, UI enhancements</span></li>
+      <li><span>Emre Zeynep</span> — <span>Detailed descriptions and initial design</span></li>
+      <li><span>Zell Stefan</span> — <span>Python data preprocessing, initial scrollytelling implementation</span></li>
       <li>All team members contributed to the project proposal, design rationale and final review.</li>
     </ul>
     <aside class="notes">Required by the assignment. Replace placeholders before exporting the PDF.</aside>
