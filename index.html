@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Cost of Inaction — Climate Change &amp; the Rising Bill for Local Disasters</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
 
   <!-- ================= HERO ================= -->
@@ -39,26 +42,34 @@
     <article class="story">
 
       <div class="step" data-step="1">
-        <h2><span class="step-num">1</span><span class="step-sep"> &middot; </span><span class="step-title">The Baseline</span></h2>
+        <h2><span class="step-num">1</span><span class="step-sep"> &middot; </span><span class="step-title">The
+            Baseline</span></h2>
         <p>
-          For the first 30 years of the 20th century, the <strong>global temperature anomaly</strong> still sat relatively low. The industrial era had already started, but the full warming 
-          effect had not yet taken hold. This is also around the time when reliable global temperature records begin and thus also where our dataset starts.
+          For the first 30 years of the 20th century, the <strong>global temperature anomaly</strong> still sat
+          relatively low. The industrial era had already started, but the full warming
+          effect had not yet taken hold. This is also around the time when reliable global temperature records begin and
+          thus also where our dataset starts.
         </p>
         <p class="note">Baseline (0°C): the 1900–1929 average.</p>
+        <button class="btn-more-info" data-modal="1">Learn more →</button>
       </div>
 
       <div class="step" data-step="2">
-        <h2><span class="step-num">2</span><span class="step-sep"> &middot; </span><span class="step-title">The Shift</span></h2>
+        <h2><span class="step-num">2</span><span class="step-sep"> &middot; </span><span class="step-title">The
+            Shift</span></h2>
         <p>
           After 1950 the temperature anomaly departs consistently above the 1900–1929
           baseline. Decadal averages increase steadily, reflecting the growing radiative
           forcing from greenhouse gases and the gradual loss of earlier natural variability.
         </p>
-        <p class="note">Follow the anomaly as the dataset transitions from baseline variability into sustained warming.</p>
+        <p class="note">Follow the anomaly as the dataset transitions from baseline variability into sustained warming.
+        </p>
+        <button class="btn-more-info" data-modal="2">Learn more →</button>
       </div>
 
       <div class="step" data-step="3">
-        <h2><span class="step-num">3</span><span class="step-sep"> &middot; </span><span class="step-title">Emergence of Extremes</span></h2>
+        <h2><span class="step-num">3</span><span class="step-sep"> &middot; </span><span class="step-title">Emergence of
+            Extremes</span></h2>
         <p>
           The pre-1990 disaster map displays the spatial distribution of recorded
           climate and weather events. Each mark is scaled by inflation-adjusted economic
@@ -66,30 +77,36 @@
           concentrate.
         </p>
         <p class="note">Bubble area = inflation-adjusted damage. Colour = disaster type.</p>
+        <button class="btn-more-info" data-modal="3">Learn more →</button>
       </div>
 
       <div class="step" data-step="4">
-        <h2><span class="step-num">4</span><span class="step-sep"> &middot; </span><span class="step-title">The Modern Crisis</span></h2>
+        <h2><span class="step-num">4</span><span class="step-sep"> &middot; </span><span class="step-title">The Modern
+            Crisis</span></h2>
         <p>
           Extending the record to 2026 reveals a broader geographic footprint and larger
           aggregate losses. The updated map reflects both increased event frequency and
           the rising economic exposure of populated regions.
         </p>
         <p class="note">The map now spans the full record, 1900&ndash;2026.</p>
+        <button class="btn-more-info" data-modal="4">Learn more →</button>
       </div>
 
       <div class="step" data-step="5">
-        <h2><span class="step-num">5</span><span class="step-sep"> &middot; </span><span class="step-title">The Economic Toll</span></h2>
+        <h2><span class="step-num">5</span><span class="step-sep"> &middot; </span><span class="step-title">The Economic
+            Toll</span></h2>
         <p>
           Decadal aggregation clarifies the trend in economic loss. The stacked totals
           increase at an accelerating rate, with hydrometeorological hazards contributing
           the largest share of recorded damages.
         </p>
         <p class="note">Stacked by disaster type. Hover any segment for exact figures.</p>
+        <button class="btn-more-info" data-modal="5">Learn more →</button>
       </div>
 
       <div class="step" data-step="6">
-        <h2><span class="step-num">6</span><span class="step-sep"> &middot; </span><span class="step-title">Explore the Data</span></h2>
+        <h2><span class="step-num">6</span><span class="step-sep"> &middot; </span><span class="step-title">Explore the
+            Data</span></h2>
         <p>
           Use the temperature timeline to select a period and compare the spatial and
           economic patterns that correspond to different warming regimes. The linked
@@ -99,6 +116,7 @@
           These data are intended to support risk assessment and resilience planning.
         </p>
         <p class="note">Brush the temperature timeline &middot; clear the selection to reset.</p>
+        <button class="btn-more-info" data-modal="6">Learn more →</button>
       </div>
 
     </article>
@@ -136,10 +154,457 @@
   <!-- HTML tooltip shared by map + bar (details-on-demand) -->
   <div id="tooltip" class="tooltip" role="tooltip" aria-hidden="true"></div>
 
+  <!-- Modal Overlays -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">✕</button>
+
+      <!-- Modal 1: The Baseline -->
+      <div class="modal-panel" id="modal-1" data-modal="1">
+        <h2>The Baseline: Understanding Global Temperature Records</h2>
+        <div class="modal-body">
+          <p>
+            To understand how Earth's climate has changed over the last century, scientists first need a reference point
+            against which future temperatures can be compared. In climate science, this reference point is known as a
+            baseline period. In this visualization, the years 1900–1929 are used as the baseline, meaning that the
+            average global temperature during this period is defined as a temperature anomaly of 0°C.
+          </p>
+
+          <p>
+            Temperature anomalies are used instead of absolute temperatures because they allow researchers to compare
+            changes over time more effectively. Different regions of the world naturally have different average
+            temperatures, but anomalies make it possible to identify whether a location or the planet as a whole is
+            becoming warmer or cooler relative to a historical reference period.
+          </p>
+
+          <p>
+            At the beginning of the twentieth century, industrialization was already underway in Europe and North
+            America. Coal-powered factories, expanding transportation networks, and growing urban populations were
+            increasing greenhouse gas emissions. However, atmospheric concentrations of carbon dioxide were still
+            significantly lower than they are today, and the full warming effects of industrial activity had not yet
+            become apparent in global temperature records.
+          </p>
+
+          <p>
+            Climate variability during this period was influenced primarily by natural factors. Volcanic eruptions,
+            fluctuations in solar activity, and large-scale ocean-atmosphere systems such as the El Niño–Southern
+            Oscillation contributed to short-term changes in temperature. While these natural influences caused
+            year-to-year variability, they did not produce the persistent warming trend observed in later decades.
+          </p>
+
+          <p>
+            The early twentieth century is also important because it marks the beginning of increasingly reliable global
+            temperature observations. Weather stations became more widespread, measurement techniques improved, and
+            scientists began developing methods to combine observations from different regions into global datasets.
+            Although coverage was still incomplete compared to modern standards, these records provide valuable insight
+            into historical climate conditions.
+          </p>
+
+          <h3>Why This Baseline Matters</h3>
+
+          <ul>
+            <li>Provides a reference point for measuring long-term warming.</li>
+            <li>Allows temperature changes to be compared across different regions and decades.</li>
+            <li>Represents a period before the strongest effects of anthropogenic climate change became visible.</li>
+            <li>Forms the starting point of many modern climate analyses and visualizations.</li>
+          </ul>
+
+          <h3>Key Takeaway</h3>
+
+          <p>
+            The baseline period represents a world that was beginning to industrialize but had not yet experienced the
+            rapid warming observed during the second half of the twentieth century. Understanding this starting point
+            makes it possible to see how dramatically global temperatures have changed over the last century.
+          </p>
+
+          <h3>Sources</h3>
+
+          <ul>
+            <li>Berkeley Earth Surface Temperature Dataset</li>
+            <li>NOAA Global Surface Temperature Analysis</li>
+            <li>IPCC Sixth Assessment Report (AR6), Working Group I</li>
+            <li>NASA Goddard Institute for Space Studies (GISS) Temperature Analysis</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- Modal 2: The Shift -->
+      <div class="modal-panel" id="modal-2" data-modal="2">
+        <h2>The Shift: Post-1950 Warming Acceleration</h2>
+        <div class="modal-body">
+          <p>
+            The period following 1950 represents one of the most significant transitions in modern climate history.
+            While temperatures had fluctuated throughout the early twentieth century, global temperature records begin
+            to show a much clearer and more persistent warming trend after the mid-century period. Scientists often
+            refer to this era as the beginning of accelerated anthropogenic warming.
+          </p>
+
+          <p>
+            Following the Second World War, economic growth expanded rapidly across much of the world. Industrial
+            production increased, transportation networks grew, and energy consumption rose dramatically. Much of this
+            growth relied on fossil fuels such as coal, oil, and natural gas. As a result, greenhouse gas
+            concentrations in the atmosphere increased at rates not previously observed in human history.
+          </p>
+
+          <p>
+            Carbon dioxide concentrations rose from approximately 310 parts per million in 1950 to over 420 parts per
+            million today. These gases trap heat within the Earth's atmosphere through the greenhouse effect, reducing
+            the amount of outgoing infrared radiation that escapes into space. This process creates an energy
+            imbalance that gradually warms the planet.
+          </p>
+
+          <p>
+            Multiple independent datasets produced by organizations such as NASA, NOAA, Berkeley Earth, and the UK Met
+            Office all show a similar warming pattern. The agreement between these datasets strengthens confidence
+            that the observed warming trend is real and not the result of measurement errors.
+          </p>
+
+          <p>
+            The warming trend is not distributed evenly across the globe. Land areas generally warm faster than oceans
+            because water absorbs and redistributes heat more efficiently. Higher northern latitudes have also
+            experienced particularly rapid warming, a phenomenon often referred to as Arctic amplification.
+          </p>
+
+          <h3>Scientific Evidence</h3>
+
+          <ul>
+            <li>Global average temperatures have increased significantly since the mid-twentieth century.</li>
+            <li>Atmospheric greenhouse gas concentrations have reached levels unprecedented in at least hundreds of
+              thousands of years.</li>
+            <li>Independent climate datasets consistently show the same long-term warming trend.</li>
+            <li>Climate attribution studies conclude that human activities are the dominant driver of recent warming.
+            </li>
+          </ul>
+
+          <h3>Why This Matters</h3>
+
+          <p>
+            The post-1950 warming trend provides the foundation for understanding many of the environmental and
+            economic impacts explored later in this visualization. Rising temperatures influence precipitation
+            patterns, extreme weather events, sea-level rise, and ecosystem stability. These changes ultimately affect
+            communities, infrastructure, and economies worldwide.
+          </p>
+
+          <h3>Sources</h3>
+
+          <ul>
+            <li>IPCC Sixth Assessment Report (AR6)</li>
+            <li>HadCRUT5 Global Temperature Dataset</li>
+            <li>NOAA Climate Monitoring Reports</li>
+            <li>NASA Climate Change Evidence Portal</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- Modal 3: Emergence of Extremes -->
+      <div class="modal-panel" id="modal-3" data-modal="3">
+        <h2>Emergence of Extremes: Early Disaster Patterns (Pre-1990)</h2>
+        <div class="modal-body">
+          <p>
+            Before 1990, recorded climate and weather disasters were generally less frequent in international
+            databases than they are today. However, this does not necessarily mean that fewer disasters occurred.
+            Historical records are influenced by reporting capacity, communication technology, and the availability of
+            economic data.
+          </p>
+
+          <p>
+            The map displayed in this section shows the spatial distribution of recorded climate-related disasters
+            before 1990. Each marker represents a documented event and is scaled according to inflation-adjusted
+            economic losses. Together, these records provide insight into where climate hazards were already affecting
+            societies before the era of modern climate awareness.
+          </p>
+
+          <p>
+            Floods and storms were among the most commonly reported hazards during this period. Regions influenced by
+            monsoon systems, tropical cyclones, and seasonal flooding frequently experienced significant economic and
+            human impacts. Droughts also played an important role, particularly in regions dependent on rain-fed
+            agriculture.
+          </p>
+
+          <p>
+            Many countries lacked comprehensive disaster reporting systems during much of the twentieth century.
+            Consequently, large and destructive events were more likely to be recorded than smaller local disasters.
+            This reporting bias is particularly relevant when comparing historical records with modern datasets, where
+            improvements in monitoring technology allow more events to be documented.
+          </p>
+
+          <h3>Regional Patterns</h3>
+
+          <ul>
+            <li>Floods frequently affected South and Southeast Asia.</li>
+            <li>Tropical storms were concentrated in the Atlantic and Pacific cyclone basins.</li>
+            <li>Droughts had significant impacts across parts of Africa and Central Asia.</li>
+            <li>Landslides commonly occurred in mountainous regions experiencing intense rainfall.</li>
+          </ul>
+
+          <h3>Data Limitations</h3>
+
+          <ul>
+            <li>Historical records may underestimate disaster frequency.</li>
+            <li>Economic loss estimates are generally more complete in wealthier countries.</li>
+            <li>Smaller events often remained undocumented.</li>
+            <li>Reporting standards varied considerably between countries.</li>
+          </ul>
+
+          <h3>Key Takeaway</h3>
+
+          <p>
+            Although the global disaster record before 1990 appears relatively sparse compared with modern records,
+            these events demonstrate that climate hazards have always posed significant risks. The historical record
+            provides an important benchmark for understanding how disaster patterns have evolved over time.
+          </p>
+
+          <h3>Sources</h3>
+
+          <ul>
+            <li>EM-DAT International Disaster Database</li>
+            <li>CRED Disaster Research Publications</li>
+            <li>Munich Re NatCatSERVICE</li>
+            <li>Swiss Re Sigma Reports</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- Modal 4: The Modern Crisis -->
+      <div class="modal-panel" id="modal-4" data-modal="4">
+        <h2>The Modern Crisis: Expanding Disaster Footprint (1990–2026)</h2>
+        <div class="modal-body">
+
+          <p>
+            Since 1990, climate and weather-related disasters have become increasingly prominent in both scientific
+            research and public policy discussions. Improvements in monitoring and reporting have expanded the
+            available dataset, but many studies also indicate that several types of extreme weather events have become
+            more frequent, more intense, or both.
+          </p>
+
+          <p>
+            The map in this section illustrates how the geographic footprint of recorded disasters expands across the
+            globe. Events become more widespread, affecting larger populations and generating greater economic
+            consequences than those observed in earlier decades.
+          </p>
+
+          <p>
+            Rapid urbanization has played a major role in increasing disaster impacts. More people now live in coastal
+            regions, river floodplains, and densely populated metropolitan areas. As infrastructure and economic
+            assets become concentrated in vulnerable locations, the financial consequences of extreme weather events
+            increase substantially.
+          </p>
+
+          <p>
+            Researchers have also identified growing evidence for compound and cascading events. These occur when one
+            hazard contributes to another, such as drought creating conditions that increase wildfire risk or extreme
+            rainfall triggering landslides after flooding.
+          </p>
+
+          <p>
+            Recent decades have included numerous high-profile disasters, including major floods, prolonged droughts,
+            severe heatwaves, and destructive storms. While no individual event can automatically be attributed to
+            climate change, scientific attribution studies increasingly evaluate how human-induced warming influences
+            the probability and intensity of such events.
+          </p>
+
+          <h3>Observed Trends</h3>
+
+          <ul>
+            <li>Increasing exposure of people and infrastructure to climate hazards.</li>
+            <li>Growing economic losses associated with extreme weather events.</li>
+            <li>More frequent record-breaking temperature events.</li>
+            <li>Expansion of disaster impacts across multiple regions simultaneously.</li>
+          </ul>
+
+          <h3>Key Takeaway</h3>
+
+          <p>
+            The modern climate era is characterized not only by rising temperatures but also by growing societal
+            vulnerability and economic exposure. Together, these factors contribute to the expanding footprint of
+            climate-related disasters observed worldwide.
+          </p>
+
+          <h3>Sources</h3>
+
+          <ul>
+            <li>World Meteorological Organization (WMO)</li>
+            <li>IPCC Sixth Assessment Report (AR6)</li>
+            <li>European Environment Agency Climate Indicators</li>
+            <li>EM-DAT International Disaster Database</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- Modal 5: The Economic Toll -->
+      <div class="modal-panel" id="modal-5" data-modal="5">
+        <h2>The Economic Toll: Accelerating Costs of Climate Disasters</h2>
+        <div class="modal-body">
+
+          <p>
+            Economic losses provide one of the most visible measures of how climate-related disasters affect society.
+            While rising global temperatures are often discussed in scientific terms, their impacts are increasingly
+            felt through damaged infrastructure, disrupted communities, agricultural losses, and the financial costs
+            of recovery. By examining economic losses over time, it becomes possible to understand how climate hazards
+            affect not only the environment but also local and national economies.
+          </p>
+
+          <p>
+            The chart in this section aggregates disaster-related losses by decade, making long-term trends easier to
+            identify. Although individual years may be influenced by a single major event, the decadal perspective
+            reveals a clear pattern: the overall economic burden associated with climate and weather disasters has
+            increased substantially over the past century.
+          </p>
+
+          <h3>Why Are Costs Increasing?</h3>
+
+          <p>
+            Several factors contribute to the rise in recorded disaster losses. Climate change is one important
+            factor, as warmer temperatures can influence the intensity and frequency of certain extreme weather
+            events. However, growing losses are also linked to population growth, urbanization, and the increasing
+            concentration of valuable infrastructure in areas exposed to climate risks.
+          </p>
+
+          <ul>
+            <li><strong>Increasing Exposure:</strong> More people live in coastal regions, floodplains, and urban
+              centers than ever before, placing more homes, businesses, and infrastructure in harm's way.</li>
+
+            <li><strong>Higher Asset Values:</strong> Modern economies contain significantly more physical and
+              financial assets than they did a century ago, meaning disasters often result in larger losses.</li>
+
+            <li><strong>More Frequent Extremes:</strong> Scientific evidence indicates that some types of extreme
+              weather events, including heavy rainfall and heatwaves, have become more common or more intense in many
+              regions.</li>
+
+            <li><strong>Global Economic Interdependence:</strong> Climate disasters can disrupt transportation, supply
+              chains, agriculture, and energy systems, creating economic effects beyond the directly affected region.
+            </li>
+          </ul>
+
+          <h3>Understanding the Hazard Categories</h3>
+
+          <p>
+            Different hazard types contribute differently to total economic losses. Floods and storms typically
+            account for the largest share of recorded damages because they can affect large populations and cause
+            widespread destruction to infrastructure. Droughts often produce lower direct damage estimates but can
+            have severe long-term impacts on agriculture, food security, and water resources.
+          </p>
+
+          <p>
+            Wildfires, heatwaves, and landslides represent a smaller share of recorded losses in many datasets, but
+            their importance has increased in recent decades. In particular, prolonged periods of heat and drought can
+            create conditions that increase wildfire risk and amplify economic damages.
+          </p>
+
+          <h3>Interpreting the Data</h3>
+
+          <p>
+            Economic loss data should be interpreted carefully. Historical disaster records are not equally complete
+            across all countries and time periods. Wealthier nations often have more comprehensive reporting systems,
+            while losses in lower-income regions may be underreported. As a result, the true global cost of
+            climate-related disasters is likely higher than recorded values suggest.
+          </p>
+
+          <p>
+            To improve comparisons across time, the losses shown in this visualization have been adjusted for
+            inflation and converted to constant 2020 US dollars. This adjustment helps account for changes in
+            purchasing power and allows losses from different decades to be compared more fairly.
+          </p>
+
+          <p>
+            Even after inflation adjustment, increasing losses cannot be explained solely by economic growth. Research
+            suggests that the combination of rising exposure, growing asset values, and changing climate conditions
+            has contributed to the upward trend observed in disaster costs.
+          </p>
+
+          <h3>Future Outlook</h3>
+
+          <p>
+            According to assessments by international organizations, climate-related economic losses are expected to
+            continue increasing throughout the twenty-first century unless significant mitigation and adaptation
+            measures are implemented. Investments in flood protection, resilient infrastructure, early warning
+            systems, and climate adaptation strategies can reduce future damages, but these measures require
+            substantial resources and long-term planning.
+          </p>
+
+          <p>
+            This creates an important policy challenge. Governments and communities must decide how much to invest
+            today in reducing future risks versus paying larger recovery costs after disasters occur.
+          </p>
+
+          <h3>Key Takeaway</h3>
+
+          <p>
+            The rising economic cost of climate disasters demonstrates that climate change is not only an
+            environmental issue but also an economic one. As temperatures increase and exposure grows, the financial
+            consequences of extreme weather events place increasing pressure on governments, businesses, and
+            households around the world.
+          </p>
+
+          <h3>Sources</h3>
+
+          <ul>
+            <li>EM-DAT International Disaster Database (CRED)</li>
+            <li>IPCC Sixth Assessment Report (AR6), Working Group II</li>
+            <li>United Nations Office for Disaster Risk Reduction (UNDRR) - Global Assessment Report</li>
+            <li>World Bank Climate and Development Reports</li>
+            <li>Munich Re NatCatSERVICE Reports</li>
+            <li>Swiss Re Institute Sigma Reports</li>
+          </ul>
+
+        </div>
+
+      </div>
+
+      <!-- Modal 6: Explore the Data -->
+      <div class="modal-panel" id="modal-6" data-modal="6">
+        <h2>Explore the Data: Interpreting Linked Climate-Disaster Views</h2>
+        <div class="modal-body">
+          <p>
+            This interactive visualization links global temperature trends to recorded disaster patterns. Use the
+            temperature timeline to select different periods and observe how spatial disaster distributions and
+            economic costs correlate with warming regimes.
+          </p>
+          <h3>How to Use the Visualization</h3>
+          <ul>
+            <li><strong>Brush the Temperature Timeline:</strong> Drag the timeline to highlight a specific period
+              (e.g., 1950–1980)</li>
+            <li><strong>View Linked Maps:</strong> The disaster map updates to show only events during that period
+            </li>
+            <li><strong>Compare Bar Charts:</strong> Decadal loss totals reveal which periods incurred the highest
+              costs</li>
+            <li><strong>Clear Selection:</strong> Click outside the brush area to reset and view the full record</li>
+          </ul>
+          <h3>Data Integration</h3>
+          <ul>
+            <li><strong>Temperature Source:</strong> Berkeley Earth / NOAA global anomaly records</li>
+            <li><strong>Disaster Source:</strong> EM-DAT International Disaster Database</li>
+            <li><strong>Time Alignment:</strong> Annual temperature data matched with recorded disaster events</li>
+            <li><strong>Spatial Resolution:</strong> Disasters geocoded to country/region centroids</li>
+          </ul>
+          <h3>Correlation Insights</h3>
+          <ul>
+            <li><strong>Pre-1950:</strong> Sparse, small-loss events; natural variability dominates</li>
+            <li><strong>1950–1980:</strong> Moderate increase; emergence of regional patterns</li>
+            <li><strong>1980–2000:</strong> Rapid acceleration; clustering visible in monsoon & cyclone regions</li>
+            <li><strong>2000–2026:</strong> Aggressive trend; global geographic spread; record-breaking events</li>
+          </ul>
+          <h3>Sources & Methodology</h3>
+          <ul>
+            <li>Visualization: D3.js v7 with Scrollama.js</li>
+            <li>Data: EM-DAT, Berkeley Earth, NOAA</li>
+            <li>Time Period: 1900–2026 (126 years)</li>
+            <li>Inflation Adjustment: 2020 USD baseline</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Libraries via CDN -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/scrollama@3"></script>
   <script src="main.js"></script>
 </body>
+
 </html>

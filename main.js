@@ -599,3 +599,72 @@ Promise.all([
     '<div style="padding:2rem;color:#ff8f7a">Could not load data or map. ' +
     'Serve this folder over HTTP (e.g. <code>py -m http.server</code>) and check your connection for the CDN map.</div>';
 });
+
+// ---- modal system (more info popups) ----------------------------------
+// Initialize after DOM is ready
+function initializeModals() {
+  const modalOverlay = document.getElementById("modal-overlay");
+  const modalClose = document.getElementById("modal-close");
+  let currentModalId = null;
+
+  function openModal(modalId) {
+    const panel = document.getElementById(`modal-${modalId}`);
+    if (!panel) return;
+    
+    // Hide all panels
+    document.querySelectorAll(".modal-panel").forEach(p => p.classList.remove("is-active"));
+    
+    // Show the selected panel
+    panel.classList.add("is-active");
+    currentModalId = modalId;
+    
+    // Show overlay
+    modalOverlay.classList.add("is-open");
+    modalOverlay.scrollTop = 0;
+
+    // Prevent body scroll
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove("is-open");
+    setTimeout(() => {
+      document.querySelectorAll(".modal-panel").forEach(p => p.classList.remove("is-active"));
+      currentModalId = null;
+    }, 400);
+    
+    // Restore body scroll
+    document.body.style.overflow = "";
+  }
+
+  // Event listeners for modal buttons and close
+  document.querySelectorAll(".btn-more-info").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const modalId = btn.getAttribute("data-modal");
+      openModal(modalId);
+    });
+  });
+
+  modalClose.addEventListener("click", closeModal);
+
+  // Close modal when clicking outside the content
+  modalOverlay.addEventListener("click", (e) => {
+    if (e.target === modalOverlay) {
+      closeModal();
+    }
+  });
+
+  // Close modal on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && currentModalId) {
+      closeModal();
+    }
+  });
+}
+
+// Initialize modals when DOM is ready
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeModals);
+} else {
+  initializeModals();
+}
