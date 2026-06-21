@@ -620,7 +620,8 @@ function initializeModals() {
     
     // Show overlay
     modalOverlay.classList.add("is-open");
-    
+    modalOverlay.scrollTop = 0;
+
     // Prevent body scroll
     document.body.style.overflow = "hidden";
   }

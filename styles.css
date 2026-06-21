@@ -502,18 +502,10 @@ body {
 }
 
 .modal-panel {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-  pointer-events: none;
-  animation: fadeIn 0.3s ease forwards;
+  display: none;
 }
 .modal-panel.is-active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
+  display: block;
   animation: slideUp 0.3s ease forwards;
 }
 
@@ -577,7 +569,7 @@ body {
 }
 
 .modal-body li::before {
-  content: '\u2022';
+  content: '\2022';
   position: absolute;
   left: 0;
   color: var(--yellow);
